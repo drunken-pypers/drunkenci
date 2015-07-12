@@ -14,6 +14,7 @@
                  [ring/ring-session-timeout "0.1.0"]
                  [ring "1.4.0"
                   :exclusions [ring/ring-jetty-adapter]]
+                 [ring/ring-json "0.3.1"]
                  [metosin/ring-middleware-format "0.6.0"]
                  [metosin/ring-http-response "0.6.3"]
                  [bouncer "0.3.3"]

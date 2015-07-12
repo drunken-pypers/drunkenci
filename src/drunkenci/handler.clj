@@ -10,7 +10,9 @@
             [taoensso.timbre.appenders.3rd-party.rotor :as rotor]
             [selmer.parser :as parser]
             [environ.core :refer [env]]
-            [clojure.tools.nrepl.server :as nrepl]))
+            [clojure.tools.nrepl.server :as nrepl])
+  (:use
+   [ring.middleware.json :only [wrap-json-response]]))
 
 (defonce nrepl-server (atom nil))
 
@@ -70,4 +72,5 @@
       middleware/wrap-base))
 
 (def app
-  (if (env :dev) (reload/wrap-reload #'app-base) app-base))
+  (-> (if (env :dev) (reload/wrap-reload #'app-base) app-base)
+      (wrap-json-response)))
